@@ -1,0 +1,16 @@
+if __name__ == '__main__':
+    bigstr = input()
+    res = ''
+    digitt = ''
+    ch = 0
+    while ch < len(bigstr):
+        if bigstr[ch].isdigit():
+            digitt += bigstr[ch]
+        else:
+            if digitt != '':
+                res += bigstr[ch] * int(digitt)
+            else:
+                res += bigstr[ch]
+            digitt = ''
+        ch += 1
+    print (res)
