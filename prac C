@@ -3,6 +3,7 @@ if __name__ == '__main__':
     res = ''
     digitt = ''
     ch = 0
+    ppo = 0
     while ch < len(bigstr):
         if bigstr[ch].isdigit():
             digitt += bigstr[ch]
@@ -13,4 +14,7 @@ if __name__ == '__main__':
                 res += bigstr[ch]
             digitt = ''
         ch += 1
-    print (res)
+
+while res:
+    print(res[:40])
+    res = res[40:]
