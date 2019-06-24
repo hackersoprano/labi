@@ -1,0 +1,65 @@
+import sys
+fam = dict()
+with open("data.txt",'r') as file:
+    content = file.read()
+    content = content.split()
+for i in range(0, len(content) - 1, 2):
+    fam[content[i]] = content[i + 1]
+print(fam)
+while(1):
+    com = input("add: Добавить пару\nrepl: Заменить\ndel: Удалить пару\nInput: ")
+    if(com == 'add'):
+        son = input("Введите имя сына: ")
+        father = input("Введите имя отца: ")
+        fam[son] = father
+        print(fam)
+        with open("data.txt", 'a') as file:
+            file.write('\n')
+            file.write(son)
+            file.write('\n')
+            file.write(father)
+    if(com == 'repl'):
+        who = input("У кого заменить отца: ")
+        onWho = input("На кого заменить отца: ")
+        for i in fam:
+            if(who == i):
+                fam[i] = onWho
+        with open("data.txt", 'w') as file:
+            with open("data.txt", 'a') as file:
+                for i in fam:
+                    file.write(i)
+                    file.write('\n')
+                    for j in range(len(fam[i])):
+                        file.write(fam[i][j])
+                    file.write('\n')
+        print(fam)
+    if(com == 'del'):
+        delSF = input("Введите имя сына, чью пару необходимо удалить: ")
+        for i in fam:
+            if(delSF == i):
+                fam.pop(i)
+                break
+        with open("data.txt", 'w') as file:
+            with open("data.txt", 'a') as file:
+                for i in fam:
+                    file.write(i)
+                    file.write('\n')
+                    for j in range(len(fam[i])):
+                        file.write(fam[i][j])
+                    file.write('\n')
+        print(fam)
+    if(com == 'exit'):
+        sys.exit()
+            
+
+
+
+
+Дима
+Олег
+Никита
+Никита
+Максим
+Андрей
+Ярослав
+Владимир
