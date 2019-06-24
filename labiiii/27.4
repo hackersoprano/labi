@@ -1,0 +1,23 @@
+import itertools
+num = 120
+strNum = "505597" 
+x = "((*?*)?((*?*)?(*?*)))"
+symbol = list(itertools.product("+-*/", repeat = 5))
+try:
+    for i in range(len(symbol)):
+        index = 0
+        y = str()
+        for j in x:
+            if(j == '?'):
+                j = (symbol[i])[index]
+                index += 1
+                y += j
+            elif(j == '*'):
+                j = strNum[index]
+                y += j
+            else:
+                y += j
+        if(int(eval(y)) == num):
+            print(y, '=', int(eval(y)))
+except ZeroDivisionError:
+    print(y, "Деление на ноль")
