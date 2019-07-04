@@ -1,0 +1,115 @@
+#include <iostream>
+#include <ctime>
+#include <iomanip>
+#include <cmath>
+
+using namespace std;
+
+void Fill_Array(double *Array, int N)
+{
+	srand(time(NULL));
+	for (uint16_t i = 0; i < N; i++)
+	{
+		Array[i]=-10.0 + (10.0 - (-10.0)) / RAND_MAX * rand();
+	}
+}
+
+void Print_Array(double *Array, int N)
+{
+	for (uint16_t i = 0; i < N; i++)
+	{
+		cout<<setprecision(5)<<Array[i]<<" ";
+	}
+
+}
+
+void Min_Abs(double *Array, int N)
+{
+	double MinAbs = 0, tmp = 0;
+	for (uint16_t i = 0; i < N; i++)
+	{
+		if (Array[i+1]>Array[i])
+		{
+			
+		tmp=Array[i];
+		
+		}
+	}
+	MinAbs=fabs(tmp);
+	cout<<"\nMin fAbs elemt of the array = "<<MinAbs;
+}
+
+void Amount_After_1st_Negative(double *Array, int N)
+{	
+	bool isNegative=false;
+	double sum=0;
+	for (uint16_t i = 0; i < N; i++)
+	{
+		if (Array[i]<0)
+		{
+			isNegative=true;
+		}
+		if (isNegative)
+		{
+			sum+=Array[i];
+		}
+		
+	}
+	cout<<"\nSum of elements after 1st negative = "<<sum;
+}
+
+void Transformation(double *Array, int N)
+{
+	int indexes=0;
+	double tmp=0;
+	int A,B;
+	double h;
+	cout<<"\nEnter interval A,B $ ";
+	cin>>A>>B;
+	for (uint16_t i = 0; i < N; i++)
+	{
+		if ( (A<=int(Array[i]) && B>=int(Array[i]) ) || (B<=int(Array[i]) && A>=int(Array[i])) )
+		{
+			
+			Array[i]=Array[i+1];
+			Array[i] = 0;
+			if(Array[i] == 0)
+			{
+				for(int j = i; j < N; j++)
+				{
+					h = Array[j];
+					Array[j] = Array[j+1];
+					Array[j+1] = Array[j];
+					Array[j+1] = 0;
+				}
+			}
+	
+		}
+		//Array[i] = 0;
+	}
+}
+
+int main()
+{
+	int N;
+	cout<<"Enter N $ ";
+	cin>>N;
+	
+	double Array[N];
+	
+	Fill_Array(Array,N);
+	
+	Print_Array(Array,N);
+	
+	Min_Abs(Array,N);
+	
+	Amount_After_1st_Negative(Array,N);
+	
+	Transformation(Array,N);
+	
+	Print_Array(Array,N);
+	
+	
+	return 0;
+}
+
