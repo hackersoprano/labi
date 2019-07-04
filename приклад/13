@@ -1,0 +1,100 @@
+# include <iostream>
+using namespace std;
+ 
+int main()
+{
+	setlocale(0,"");
+    int n,b;
+    cout<<"Введите размерность массива: ";
+    cin >> n >> b;
+ 
+    int** arr = new int *[n];
+    for (int i = 0; i < n; ++i)
+        arr[i] = new int [b];
+ 
+     cout<<"Enter\n";
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < b; j++)
+        {
+            cin >> arr[i][j];
+        }
+    }
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < b; j++)
+        {
+            cout.width(10);
+            cout<< arr[i][j];
+        }
+        cout<<"\n";
+    }
+    
+    
+        
+        
+    int i_max, j_max;
+    int max;
+    for (int i = 0; i < n; ++i)  
+    {
+        for (int j = 0; j < b; ++j)
+        {
+            if (((!i) && (!j)) || (arr[i][j] > max))
+            {
+                max = arr[i][j];
+                i_max = i;
+                j_max = j;
+            }
+        }
+    }
+    arr[i_max][j_max] = arr[0][0];
+    arr[0][0] = max;
+    for (int count = 1; count < n; ++count)
+    {
+        max = arr[0][1];
+        for (int i = 0; i < n; ++i)
+            for (int j = 0; j < b; ++j)
+                if (((i != j) || ((i >= count) && (j >= count))) && (arr[i][j] > max))
+                {
+                    max = arr[i][j];
+                    i_max = i;
+                    j_max = j;
+                }
+        arr[i_max][j_max] = arr[count][count];
+        arr[count][count] = max;
+    }
+ 
+    cout << "новый массив: " << endl;
+    {
+        for (int i = 0; i < n; i++)  
+        {
+            for (int j = 0; j < b; j++)
+            {
+                cout.width(10);
+                cout<< arr[i][j];
+            }
+            cout << endl;
+        }
+        cout << endl;
+    }
+ 	
+ 	for (int i = 0; i < n; ++i)
+    {
+        int count = 0;
+        for (int j = 0; j < b; ++j)
+            if (arr[i][j] < 0)
+                ++count;
+        if (count == n)
+        {
+            cout << "линия #" << i + 1 << " не имеет положительных чисел\n";
+            system("pause");
+            return 0;
+        }
+    }
+    cout << "все линии имеют положительные числа\n";
+ 	
+    for (int i = 0; i < n; i++)
+        delete[] arr[i];
+    delete [] arr;
+    return 0;
+}
