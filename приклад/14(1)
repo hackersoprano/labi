@@ -1,0 +1,85 @@
+#include <iostream>
+#include <cmath>
+#include <random>
+#include <ctime>
+#include <cstdlib>
+using namespace std;
+int main()
+{
+	setlocale(0,"");
+	srand ( time(0) );
+	int k,p;
+	cout<<"enter the dimension of the array: ";
+	cin>>k>>p;
+	int i, j;
+    int** arr = new int *[k];
+    for (int i = 0; i < k; ++i)
+        arr[i] = new int [p];
+        
+    for (int i = 0; i < k; i++)
+    {
+        for (int j = 0; j<p; j++){
+            arr[i][j] = rand () % -20 - rand () % 20;
+            cout.width(10);
+            cout<< arr[i][j];
+            
+        }
+        cout << '\n';
+        
+    }
+
+    cout <<"\n";
+    cout<<"\n";
+    
+    int maxim=0;
+    int minim=-1;
+    int c,d,y,o,temp;
+    for (int i = 0; i < k; i++)
+    {
+        for (int j = 0; j<p; j++){
+            if (maxim<arr[i][j]){
+                maxim=arr[i][j];
+                c=i;
+                d=j;
+            }
+            if (minim>arr[i][j]){
+                minim=arr[i][j];
+                y=i;
+                o=j;
+            }
+    }
+    
+}
+    temp=arr[0][0];
+    arr[0][0]=arr[c][d];
+    arr[c][d]=temp;
+    temp=arr[4][4];
+    arr[4][4]=arr[y][o];
+    arr[y][o]=temp;
+    
+    
+    for (int i = 0; i < k; i++)
+    {
+        for (int j = 0; j<p; j++){
+            cout.width(10);
+            cout<< arr[i][j];
+        }
+        cout << '\n';
+}
+    int pol=0,otr=0,zero=0;
+    for (int i = 0; i < k; i++)
+    {
+        for (int j = 0; j<p; j++){
+            if(arr[i][j]>0)pol++;
+            if(arr[i][j]<0)otr++;
+            if(arr[i][j]==0)zero++;}
+    }
+    cout<<"+:"<<pol<<"\n";
+    cout<<"-: "<<otr<<"\n";
+    cout<<"=0: "<<zero<<"\n";
+    
+    //delete [] arr;
+   // cout<< endl;
+   // system("pause");
+   // return 0;
+}
