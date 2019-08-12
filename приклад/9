@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+double foo(int s, double v=20,  double g=9.8){
+	double t;
+	t = (2*s)/v;
+	return t;}
+int main(){
+	int s=5;
+	foo(s);
+	cout<<foo(s)<<'\n';
+	s=10;
+	foo(s);
+	cout<<foo(s);
+	return 0;
+}
+	
