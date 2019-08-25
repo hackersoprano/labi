@@ -1,49 +1,42 @@
 #include <iostream>
-#include <ctime>
-#include <iomanip>
+#include <conio.h>
+#include <math.h>
 using namespace std;
- 
-int main(int argc, char* argv[])
+int main()
 {
-    srand(time(0) );
-    int n;
-    cout<<"Введите размерность массива: ";
-    cin>>n;
-    int *arr = new int [n];
-        for (int i = 0; i < n; i++)
-            arr[i] = (rand () % -10 - rand () % 10); 
-        cout << "array = ";
-        for (int i = 0; i < n; i++)
-            cout << setprecision(2) << arr[i] << "    ";//вывод
-    cout <<"\n";
-    cout<<"\n";
-    
-        int min = -1;
+ 
+	int X[50];
+	int n;
+	int i,j=0;
+	float sum=0;
+	cout<<"Enter col-vo elem: ";
+	cin>>n;
+	for(i=0;i<n;i++)
+  {
+   		X[i]=-10+rand()%20;
+   		cout<<X[i]<<' ';
+  }
+    int min = -1;
         for (int i=0; i<n; i++)
             if (min < 0) min = i;
                 else
-                    if (arr[i] < arr[min]) min = i;
+                    if (X[i] < X[min]) min = i;
         if (min < 0) return -1;
+        
+        cout<<"\n";
         
         int k, max;
         for (int i=(min+1); i<n; i++)
         {
             for (max=k=i; k<n; k++)
-                if (arr[k] < arr[max]) max = k;
-            if (arr[i] != arr[max])
-                swap(arr[i], arr[max]);
+                if (X[k] < X[max]) max = k;
+            if (X[i] != X[max])
+                swap(X[i], X[max]);
         }
-        cout<<min<<"\n";
-        cout << "array = ";
-        for (int i = 0; i < 10; i++)
-                cout << setprecision(2) << arr[i] << "    ";
-            
-            
-            
-            
-            
-    delete [] arr;
-    cout << endl;
-    system("pause");
-    return 0;
+        for (int i = 0; i < n; i++)
+                cout<< X[i] << " ";
+    
+    getch();
+        return 0;
+
 }
