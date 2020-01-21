@@ -1,0 +1,79 @@
+create database bersenev;
+show bersenev;
+use bersenev;
+create table person(
+person_id smallint unsigned,
+fname varchar(20),
+lname varchar(20),
+gender char(1),
+birth_date DATE,
+address varchar(30),
+city varchar (20),
+state varchar (20),
+country varchar(20),
+postal_code varchar(20),
+constraint pk_person primary key (person_id)
+);
+
+desc person;
+create table favorite_food(
+person_id smallint unsigned,
+food varchar(20),
+constraint pk_favorite_food primary key (person_id, food),
+constraint fk_person_id foreign key (person_id)
+references person (person_id));
+	
+desc favorite_food;
+alter table person modify person_id smallint unsigned auto_increment;
+drop table favorite_food;
+alter table person modify person_id smallint unsigned auto_increment;
+create table favorite_food(
+person_id smallint unsigned,
+food varchar(20),
+constraint pk_favorite_food primary key (person_id, food),
+constraint fk_person_id foreign key (person_id)
+references person (person_id));
+
+desc person;
+insert into person
+(person_id, fname, lname, gender, birth_date)
+values (null, ' Вильям ', ' Turner ', 'M', '1972-05-27');
+
+select person_id, fname, lname, birth_date from person
+where person_id = 1;
+
+select person_id, fname, lname, birth_date from person
+where lname = ' turner ';
+
+insert into favorite_food
+(person_id,food)
+values (1, 'Макароны');
+insert into favorite_food
+(person_id,food)
+values (1, 'Гамбургеры');
+insert into favorite_food
+(person_id,food)
+values (1, 'Хотдог');
+
+ update person
+set address = '1225 Tremont st. ',
+city = 'Boston',
+state = 'MA',
+country = 'USA',
+postal_code = '021138'
+where person_id = 1;
+
+insert into person
+(person_id, fname, lname, gender, birth_date, address, city, state,country,postal_code)
+values (null,'Сьюзен', 'Смит', 'Ж', '1985-03-05', '1648 Grem st.', 'boston', 'MA', 'USA', '022245');
+
+desc person;
+insert into favorite_food
+(person_id,food)
+values (2, 'доширак');
+insert into favorite_food
+(person_id,food)
+values (2, 'чипсы');
+
+
+
